@@ -140,7 +140,7 @@ int main(int argc, char **argv)
 	evas_object_resize(edje, 600, 300);
 	evas_object_show(edje);
 	evas_object_focus_set(edje, 1);
-	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_DOWN, &key_handler, NULL);
+	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, NULL);
 
 	edje_object_part_text_set(edje, "eshutdown/text/ok/label2", "OFF");
 	edje_object_part_text_set(edje, "eshutdown/text/cancel/label2", "Cancel");
