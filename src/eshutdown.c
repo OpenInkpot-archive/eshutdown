@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <linux/reboot.h>
 #include <libintl.h>
@@ -19,6 +21,15 @@
 Ecore_Evas *main_win;
 
 void exit_all(void* param) { ecore_main_loop_quit(); }
+
+static void die(const char* fmt, ...)
+{
+	va_list ap;
+	va_start(ap, fmt);
+	vfprintf(stderr, fmt, ap);
+	va_end(ap);
+	exit(EXIT_FAILURE);
+}
 
 typedef struct
 {
@@ -116,7 +127,7 @@ int main(int argc, char **argv)
 	main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 300);
 	ecore_evas_borderless_set(main_win, 0);
 	ecore_evas_shaped_set(main_win, 0);
-	ecore_evas_move(main_win, 0, 250);
+//	ecore_evas_move(main_win, 0, 250);
 	ecore_evas_title_set(main_win, "eshutdown");
 	ecore_evas_name_class_set(main_win, "eshutdown", "eshutdown");
 
@@ -125,7 +136,7 @@ int main(int argc, char **argv)
 	Evas_Object *edje = edje_object_add(main_canvas);
 	evas_object_name_set(edje, "edje");
 	edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj", "eshutdown");
-	evas_object_move(edje, 0, 0);
+	evas_object_move(edje, 0, 250);
 	evas_object_resize(edje, 600, 300);
 	evas_object_show(edje);
 	evas_object_focus_set(edje, 1);
