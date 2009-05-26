@@ -16,8 +16,8 @@ msgstr ""
 
 #: src/eshutdown.c:36
 msgid "OFF"
-msgstr "Выключить"
+msgstr "Викл."
 
 #: src/eshutdown.c:37
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Відмінити"
