@@ -18,7 +18,7 @@
 
 #define POWER "Power"
 
-Ecore_Evas *main_win;
+Ecore_Evas *r, *main_win;
 
 void exit_all(void* param) { ecore_main_loop_quit(); }
 
@@ -55,8 +55,10 @@ key_handler(void *data, Evas *evas, Evas_Object *obj, void *event_info)
 
 	if(!strcmp(k, "XF86PowerOff") || !strcmp(k, "Return"))
 		shutdown();
-	else if(!strcmp(k, "Escape"))
+	else if(!strcmp(k, "Escape")) {
 		ecore_evas_hide(main_win);
+		ecore_evas_hide(r);
+	}
 }
 
 
@@ -79,8 +81,10 @@ static int _client_del(void* param, int ev_type, void* ev)
 	if(strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size))
 		if(ecore_evas_visibility_get(main_win))
 			shutdown();
-		else
+		else {
+			ecore_evas_show(r);
 			ecore_evas_show(main_win);
+		}
 
     //printf(": %.*s(%d)\n", msg->size, msg->msg, msg->size);
 
@@ -124,7 +128,12 @@ int main(int argc, char **argv)
 
 	ecore_x_io_error_handler_set(exit_all, NULL);
 
-	Ecore_Evas *r = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+	r = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+	ecore_evas_borderless_set(r, 0);
+	ecore_evas_shaped_set(r, 1);
+	ecore_evas_move(r, 0, 0);
+	ecore_evas_title_set(r, "eshutdown_r");
+	ecore_evas_name_class_set(r, "eshutdown_r", "eshutdown_r");
 
 	main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 300);
 	ecore_evas_borderless_set(main_win, 0);
