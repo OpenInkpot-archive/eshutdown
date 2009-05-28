@@ -1,3 +1,9 @@
+eshutdown (0.1-4) asimov; urgency=low
+
+  * made window transient
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Thu, 28 May 2009 13:45:45 +0200
+
 eshutdown (0.1-3) asimov; urgency=low
 
   * handle key up event
