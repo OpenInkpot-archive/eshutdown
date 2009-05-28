@@ -124,19 +124,24 @@ int main(int argc, char **argv)
 
 	ecore_x_io_error_handler_set(exit_all, NULL);
 
+	Ecore_Evas *r = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
+
 	main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 300);
 	ecore_evas_borderless_set(main_win, 0);
 	ecore_evas_shaped_set(main_win, 0);
-//	ecore_evas_move(main_win, 0, 250);
+	ecore_evas_move(main_win, 0, 250);
 	ecore_evas_title_set(main_win, "eshutdown");
 	ecore_evas_name_class_set(main_win, "eshutdown", "eshutdown");
+	ecore_x_icccm_transient_for_set(
+			ecore_evas_software_x11_window_get(main_win),
+			ecore_evas_software_x11_window_get(r));
 
 	Evas *main_canvas = ecore_evas_get(main_win);
 
 	Evas_Object *edje = edje_object_add(main_canvas);
 	evas_object_name_set(edje, "edje");
 	edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj", "eshutdown");
-	evas_object_move(edje, 0, 250);
+	evas_object_move(edje, 0, 0);
 	evas_object_resize(edje, 600, 300);
 	evas_object_show(edje);
 	evas_object_focus_set(edje, 1);
