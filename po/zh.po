@@ -18,8 +18,8 @@ msgstr ""
 
 #: src/eshutdown.c:36
 msgid "OFF"
-msgstr "¹Ø±Õ"
+msgstr "å…³é—­"
 
 #: src/eshutdown.c:37
 msgid "Cancel"
-msgstr "È¡Ïû"
+msgstr "å–æ¶ˆ"
