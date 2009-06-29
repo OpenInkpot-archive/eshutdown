@@ -1,0 +1,28 @@
+# translation of eshutdown.po to French
+# eshutdown.
+# Copyright (C) 2009 Alexander Kerner <lunohod@openinkpot.org>
+# This file is distributed under the same license as the eshutdown package.
+#
+# Alexander Kerner <lunohod@openinkpot.org>, 2009.
+# Louvre <diogenedebian@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: eshutdown\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-05-13 12:57+0200\n"
+"PO-Revision-Date: 2009-06-27 10:53+0200\n"
+"Last-Translator: Louvre <diogenedebian@gmail.com>\n"
+"Language-Team: French <openinkpot-l10n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: src/eshutdown.c:36
+msgid "OFF"
+msgstr "OFF"
+
+#: src/eshutdown.c:37
+msgid "Cancel"
+msgstr "Annuler"
+
