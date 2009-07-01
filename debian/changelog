@@ -1,3 +1,9 @@
+eshutdown (0.1-7) asimov; urgency=low
+
+  * disable transparency
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Wed, 01 Jul 2009 23:30:29 +0200
+
 eshutdown (0.1-6) asimov; urgency=low
 
   * new translations
