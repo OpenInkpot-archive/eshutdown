@@ -1,3 +1,9 @@
+eshutdown (0.2-5) asimov; urgency=low
+
+  * raise window if not hidden
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Tue, 14 Jul 2009 00:25:32 +0200
+
 eshutdown (0.2-4) asimov; urgency=low
 
   * fixed wrong key handling
