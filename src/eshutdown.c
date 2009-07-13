@@ -103,12 +103,14 @@ static int _client_data(void* param, int ev_type, void* ev)
 
 static void main_win_resize_handler(Ecore_Evas* main_win)
 {
+	ecore_evas_hide(main_win);
 	int w, h;
 	Evas* canvas = ecore_evas_get(main_win);
 	evas_output_size_get(canvas, &w, &h);
 
 	Evas_Object* edje = evas_object_name_find(canvas, "edje");
 	evas_object_resize(edje, w, h);
+	ecore_evas_show(main_win);
 }
 
 int main(int argc, char **argv)
