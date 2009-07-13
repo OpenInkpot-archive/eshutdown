@@ -18,7 +18,7 @@
 
 #define POWER "Power"
 
-Ecore_Evas *r, *main_win;
+Ecore_Evas *main_win;
 
 void exit_all(void* param) { ecore_main_loop_quit(); }
 
@@ -51,13 +51,10 @@ key_handler(void *data, Evas *evas, Evas_Object *obj, void *event_info)
 
 	const char* k = e->keyname;
 
-	printf("keypress: %s\n", k);
-
 	if(!strcmp(k, "XF86PowerOff") || !strcmp(k, "Return"))
 		shutdown();
 	else if(!strcmp(k, "Escape")) {
 		ecore_evas_hide(main_win);
-		ecore_evas_hide(r);
 	}
 }
 
@@ -128,57 +125,28 @@ int main(int argc, char **argv)
 
 	ecore_x_io_error_handler_set(exit_all, NULL);
 
-	r = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
-	ecore_evas_borderless_set(r, 0);
-	ecore_evas_shaped_set(r, 1);
-	ecore_evas_move(r, 0, 0);
-	ecore_evas_title_set(r, "eshutdown_r");
-	ecore_evas_name_class_set(r, "eshutdown_r", "eshutdown_r");
-
-//	main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 300);
 	main_win = ecore_evas_software_x11_new(0, 0, 0, 0, 600, 800);
 	ecore_evas_borderless_set(main_win, 0);
-	ecore_evas_shaped_set(main_win, 0);
-//	ecore_evas_move(main_win, 0, 250);
 	ecore_evas_title_set(main_win, "eshutdown");
 	ecore_evas_name_class_set(main_win, "eshutdown", "eshutdown");
-/*	ecore_x_icccm_transient_for_set(
-			ecore_evas_software_x11_window_get(main_win),
-			ecore_evas_software_x11_window_get(r));
-			*/
 
 	Evas *main_canvas = ecore_evas_get(main_win);
-
-    Evas_Object* bg = evas_object_rectangle_add(main_canvas);
-    evas_object_name_set(bg, "bg");
-    evas_object_color_set(bg, 255, 255, 255, 255);
-    evas_object_move(bg, 0, 0);
-    evas_object_resize(bg, 600, 800);
-    evas_object_show(bg);
 
 	Evas_Object *edje = edje_object_add(main_canvas);
 	evas_object_name_set(edje, "edje");
 	edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj", "eshutdown");
-//	evas_object_move(edje, 0, 0);
-	evas_object_move(edje, 0, 250);
-	evas_object_resize(edje, 600, 300);
+	evas_object_move(edje, 0, 0);
+	evas_object_resize(edje, 600, 800);
 	evas_object_show(edje);
 	evas_object_focus_set(edje, 1);
 	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, NULL);
 
-	edje_object_part_text_set(edje, "eshutdown/text/ok/label2", "OFF");
-	edje_object_part_text_set(edje, "eshutdown/text/cancel/label2", "Cancel");
-
-	char *t1 = gettext("OFF"), 
-		 *t2 = gettext("Cancel");
-
-	if(!strcmp("OFF", t1) && !strcmp("Cancel", t2)) {
-		edje_object_signal_emit(edje, "set_noloc", "");
-	} else {
-		edje_object_signal_emit(edje, "set_loc", "");
-		edje_object_part_text_set(edje, "eshutdown/text/ok/label1", t1);
-		edje_object_part_text_set(edje, "eshutdown/text/cancel/label1", t2);
-	}
+	char *t;
+	asprintf(&t, "%s<br><br>%s",
+			gettext("Power off - press \"OK\""),
+			gettext("Cancel - press \"C\""));
+	edje_object_part_text_set(edje, "eshutdown/text", t);
+	free(t);
 
 //	ecore_evas_show(main_win);
 	ecore_main_loop_begin();

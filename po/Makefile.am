@@ -6,6 +6,19 @@ MOFILES = $(patsubst %.po,%.mo,$(POFILES))
 top_builddir = ..
 localedir=$(datadir)/locale
 
+update-po:
+	rm -f $(PACKAGE).pot
+	xgettext -k_ -d $(PACKAGE) \
+	  --foreign-user \
+	  --package-name="$(PACKAGE)" --package-version="@VERSION@" \
+	  --msgid-bugs-address="@PACKAGE_BUGREPORT@" \
+	  -f POTFILES -D $(top_srcdir) -o $(PACKAGE).pot
+	for cat in "" $(POFILES); do \
+	  if test -z "$$cat"; then continue; fi; \
+	  msgmerge -o tmp-$$cat $$cat $(PACKAGE).pot && \
+	  mv -f tmp-$$cat $$cat; \
+	done
+
 MSGFMT = msgfmt
 
 all: $(MOFILES)
