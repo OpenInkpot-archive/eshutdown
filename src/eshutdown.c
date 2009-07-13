@@ -101,6 +101,16 @@ static int _client_data(void* param, int ev_type, void* ev)
     return 0;
 }
 
+static void main_win_resize_handler(Ecore_Evas* main_win)
+{
+	int w, h;
+	Evas* canvas = ecore_evas_get(main_win);
+	evas_output_size_get(canvas, &w, &h);
+
+	Evas_Object* edje = evas_object_name_find(canvas, "edje");
+	evas_object_resize(edje, w, h);
+}
+
 int main(int argc, char **argv)
 {
 	if(!evas_init())
@@ -130,6 +140,8 @@ int main(int argc, char **argv)
 	ecore_evas_title_set(main_win, "eshutdown");
 	ecore_evas_name_class_set(main_win, "eshutdown", "eshutdown");
 
+	ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
+
 	Evas *main_canvas = ecore_evas_get(main_win);
 
 	Evas_Object *edje = edje_object_add(main_canvas);
@@ -141,6 +153,7 @@ int main(int argc, char **argv)
 	evas_object_focus_set(edje, 1);
 	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, NULL);
 
+	edje_object_part_text_set(edje, "eshutdown/title", gettext("Power Off"));
 	char *t;
 	asprintf(&t, "%s<br><br>%s",
 			gettext("Power off - press \"OK\""),

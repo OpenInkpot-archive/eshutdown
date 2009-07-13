@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: lunohod@openinkpot.org\n"
-"POT-Creation-Date: 2009-07-13 20:36+0200\n"
+"POT-Creation-Date: 2009-07-13 21:35+0200\n"
 "PO-Revision-Date: 2009-06-26 10:32+0200\n"
 "Last-Translator: András Csehi <acsehi@gmail.com>\n"
 "Language-Team: Hungarian\n"
@@ -16,11 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/eshutdown.c:146
+#: src/eshutdown.c:156
+msgid "Power Off"
+msgstr ""
+
+#: src/eshutdown.c:159
 msgid "Power off - press \"OK\""
 msgstr ""
 
-#: src/eshutdown.c:147
+#: src/eshutdown.c:160
 msgid "Cancel - press \"C\""
 msgstr ""
 
