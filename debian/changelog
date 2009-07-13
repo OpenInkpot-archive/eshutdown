@@ -1,3 +1,9 @@
+eshutdown (0.2-3) asimov; urgency=low
+
+  * fix rotation one more time
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Mon, 13 Jul 2009 23:33:37 +0200
+
 eshutdown (0.2-2) asimov; urgency=low
 
   * fix rotation
