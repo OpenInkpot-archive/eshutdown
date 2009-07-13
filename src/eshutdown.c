@@ -76,12 +76,11 @@ static int _client_del(void* param, int ev_type, void* ev)
 
     /* Handle */
 	if(strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size))
-//		if(ecore_evas_visibility_get(main_win))
-//			shutdown();
-//		else {
-			//ecore_evas_show(r);
+		if(ecore_evas_visibility_get(main_win))
+			ecore_evas_raise(main_win);
+		else {
 			ecore_evas_show(main_win);
-//		}
+		}
 
     //printf(": %.*s(%d)\n", msg->size, msg->msg, msg->size);
 
