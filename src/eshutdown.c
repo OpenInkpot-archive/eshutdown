@@ -79,9 +79,6 @@ static int _client_del(void* param, int ev_type, void* ev)
             ecore_evas_show(main_win);
         }
 
-    //printf(": %.*s(%d)\n", msg->size, msg->msg, msg->size);
-
-
     free(msg->msg);
     free(msg);
     return 0;
@@ -161,7 +158,6 @@ int main(int argc, char **argv)
     edje_object_part_text_set(edje, "eshutdown/text", t);
     free(t);
 
-//    ecore_evas_show(main_win);
     ecore_main_loop_begin();
 
     edje_shutdown();
