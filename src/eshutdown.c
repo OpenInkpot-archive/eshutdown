@@ -12,6 +12,8 @@
 #include <Evas.h>
 #include <Edje.h>
 
+#include <libkeys.h>
+
 #ifndef DATADIR
 #define DATADIR "."
 #endif
@@ -47,15 +49,13 @@ static void shutdown()
 static void
 key_handler(void *data, Evas *evas, Evas_Object *obj, void *event_info)
 {
-	Evas_Event_Key_Up* e = (Evas_Event_Key_Up*)event_info;
+    const char* action = keys_lookup_by_event((keys_t*)data, "default",
+                                              (Evas_Event_Key_Up*)event_info);
 
-	const char* k = e->keyname;
-
-	if(!strcmp(k, "XF86PowerOff") || !strcmp(k, "Return"))
-		shutdown();
-	else if(!strcmp(k, "Escape")) {
-		ecore_evas_hide(main_win);
-	}
+    if(action && !strcmp(action, "Shutdown"))
+        shutdown();
+    else if(action && !strcmp(action, "Close"))
+        ecore_evas_hide(main_win);
 }
 
 
@@ -128,6 +128,8 @@ int main(int argc, char **argv)
 	setlocale(LC_ALL, "");
 	textdomain("eshutdown");
 
+    keys_t* keys = keys_alloc("eshutdown");
+
 	ecore_con_server_add(ECORE_CON_LOCAL_USER, "eshutdown", 0, NULL);
 
 	ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_ADD, _client_add, NULL);
@@ -152,7 +154,7 @@ int main(int argc, char **argv)
 	evas_object_resize(edje, 600, 800);
 	evas_object_show(edje);
 	evas_object_focus_set(edje, 1);
-	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, NULL);
+	evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, keys);
 
 	edje_object_part_text_set(edje, "eshutdown/title", gettext("Power Off"));
 	char *t;
@@ -170,6 +172,8 @@ int main(int argc, char **argv)
 	ecore_con_shutdown();
 	ecore_shutdown();
 	evas_shutdown();
+
+    keys_free(keys);
 
 	return 0;
 }
