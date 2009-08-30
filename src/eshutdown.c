@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <linux/reboot.h>
 #include <libintl.h>
 
 #include <Ecore.h>
