@@ -1,3 +1,13 @@
+eshutdown (0.3-1) asimov; urgency=low
+
+  * Use libkeys for adjustable keybindings.
+  * Packaging, code and makefiles cleanups.
+  * Translations added: Spanish, Catalan, Italian.
+  * Translations updated: Chinese, Czech, Hungarian, Polish, Bulgarian,
+    German.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 31 Aug 2009 05:55:23 +0700
+
 eshutdown (0.2-6+b1) asimov; urgency=low
 
   * Rebuild due to EFL update
