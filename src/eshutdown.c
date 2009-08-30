@@ -40,8 +40,6 @@ typedef struct
 
 static void shutdown()
 {
-    printf("shutdown\n");
-    sync();
     system("poweroff");
 }
 
