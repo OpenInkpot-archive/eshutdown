@@ -1,6 +1,9 @@
 eshutdown (0.3-2) asimov; urgency=low
 
   * Theme adjusted to new ecore engine.
+  * Packaging cleanup
+  * Translations added: Bengali.
+  * Translations updated: Ukrainian.
 
  -- Mikhail Gusarov <dottedmag@dottedmag.net>  Wed, 16 Sep 2009 05:05:23 +0700
 
