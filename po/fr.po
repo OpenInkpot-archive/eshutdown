@@ -2,7 +2,7 @@
 # eshutdown.
 # Copyright (C) 2009 Alexander Kerner <lunohod@openinkpot.org>
 # This file is distributed under the same license as the eshutdown package.
-#
+# 
 # Alexander Kerner <lunohod@openinkpot.org>, 2009.
 # Louvre <diogenedebian@gmail.com>, 2009.
 msgid ""
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
+#: src/eshutdown.c:160
+msgid "Cancel - press \"C\""
+msgstr "Annuler - appuyer sur « C »"
+
 #: src/eshutdown.c:156
 msgid "Power Off"
-msgstr ""
+msgstr "Éteindre"
 
 #: src/eshutdown.c:159
 msgid "Power off - press \"OK\""
-msgstr ""
-
-#: src/eshutdown.c:160
-msgid "Cancel - press \"C\""
-msgstr ""
+msgstr "Éteindre - appuyer sur « OK »"
 
 #~ msgid "OFF"
 #~ msgstr "OFF"
