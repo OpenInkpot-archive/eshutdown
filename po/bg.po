@@ -15,17 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/eshutdown.c:159
+msgid "Power off - press \"OK\""
+msgstr "Изключване - натиснете „OK“"
+
 #: src/eshutdown.c:160
 msgid "Cancel - press \"C\""
-msgstr "Отказ - натиснете \"C\""
+msgstr "Отказ - натиснете „C“"
 
 #: src/eshutdown.c:156
 msgid "Power Off"
-msgstr "Изключено"
-
-#: src/eshutdown.c:159
-msgid "Power off - press \"OK\""
-msgstr "Изключване - натиснете \"OK\""
+msgstr "Изключване"
 
 #~ msgid "OFF"
 #~ msgstr "Изключване"
