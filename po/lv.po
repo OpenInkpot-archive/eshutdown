@@ -1,0 +1,29 @@
+# eshutdown.
+# Copyright (C) 2009 Alexander Kerner <lunohod@openinkpot.org>
+# This file is distributed under the same license as the eshutdown package.
+# Alexander Kerner <lunohod@openinkpot.org>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eshutdown\n"
+"Report-Msgid-Bugs-To: lunohod@openinkpot.org\n"
+"POT-Creation-Date: 2009-07-13 21:35+0200\n"
+"PO-Revision-Date: 2009-10-22 13:23+0200\n"
+"Last-Translator: Dainis <druumais@inbox.lv>\n"
+"Language-Team: Russian <openinkpot-l10n@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/eshutdown.c:156
+msgid "Power Off"
+msgstr "Ierīces izslēgšana"
+
+#: src/eshutdown.c:159
+msgid "Power off - press \"OK\""
+msgstr "Izslēgt ierīci - spied \"OK\""
+
+#: src/eshutdown.c:160
+msgid "Cancel - press \"C\""
+msgstr "Atcelt - spied \"C\""
+
