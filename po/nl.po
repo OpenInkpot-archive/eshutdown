@@ -15,17 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/eshutdown.c:160
+msgid "Cancel - press \"C\""
+msgstr "Druk op \"C\" om te annuleren"
+
 #: src/eshutdown.c:156
 msgid "Power Off"
-msgstr "Ausschalten?"
+msgstr "Uitschakelen"
 
 #: src/eshutdown.c:159
 msgid "Power off - press \"OK\""
-msgstr "\"OK\" - Gerät ausschalten"
-
-#: src/eshutdown.c:160
-msgid "Cancel - press \"C\""
-msgstr "\"C\" - Vorgang abbrechen"
+msgstr "Druk op \"OK\" om uit te schakelen"
 
 #~ msgid "OFF"
 #~ msgstr "Ausschalten"
