@@ -35,57 +35,64 @@
 #include <libkeys.h>
 
 #ifndef DATADIR
-#define DATADIR "."
+#  define DATADIR "."
 #endif
 
 #define POWER "Power"
 
 Ecore_Evas *main_win;
 
-void exit_all(void* param) { ecore_main_loop_quit(); }
-
-typedef struct
+void
+exit_all(void *param)
 {
-    char* msg;
+    ecore_main_loop_quit();
+}
+
+typedef struct {
+    char *msg;
     int size;
 } client_data_t;
 
-static void shutdown()
+static void
+shutdown()
 {
     system("poweroff");
 }
 
 static void
-key_handler(void *data, Evas *evas, Evas_Object *obj, void *event_info)
+key_handler(void *data, Evas * evas, Evas_Object * obj, void *event_info)
 {
-    const char* action = keys_lookup_by_event((keys_t*)data, "default",
-                                              (Evas_Event_Key_Up*)event_info);
+    const char *action = keys_lookup_by_event((keys_t *) data, "default",
+                                              (Evas_Event_Key_Up *)
+                                              event_info);
 
-    if(action && !strcmp(action, "Shutdown"))
+    if (action && !strcmp(action, "Shutdown"))
         shutdown();
-    else if(action && !strcmp(action, "Close"))
+    else if (action && !strcmp(action, "Close"))
         ecore_evas_hide(main_win);
 }
 
 
-static int _client_add(void* param, int ev_type, void* ev)
+static int
+_client_add(void *param, int ev_type, void *ev)
 {
-    Ecore_Con_Event_Client_Add* e = ev;
-    client_data_t* msg = malloc(sizeof(client_data_t));
+    Ecore_Con_Event_Client_Add *e = ev;
+    client_data_t *msg = malloc(sizeof(client_data_t));
     msg->msg = strdup("");
     msg->size = 0;
     ecore_con_client_data_set(e->client, msg);
     return 0;
 }
 
-static int _client_del(void* param, int ev_type, void* ev)
+static int
+_client_del(void *param, int ev_type, void *ev)
 {
-    Ecore_Con_Event_Client_Del* e = ev;
-    client_data_t* msg = ecore_con_client_data_get(e->client);
+    Ecore_Con_Event_Client_Del *e = ev;
+    client_data_t *msg = ecore_con_client_data_get(e->client);
 
     /* Handle */
-    if(strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size))
-        if(ecore_evas_visibility_get(main_win))
+    if (strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size))
+        if (ecore_evas_visibility_get(main_win))
             ecore_evas_raise(main_win);
         else {
             ecore_evas_show(main_win);
@@ -96,48 +103,52 @@ static int _client_del(void* param, int ev_type, void* ev)
     return 0;
 }
 
-static int _client_data(void* param, int ev_type, void* ev)
+static int
+_client_data(void *param, int ev_type, void *ev)
 {
-    Ecore_Con_Event_Client_Data* e = ev;
-    client_data_t* msg = ecore_con_client_data_get(e->client);
+    Ecore_Con_Event_Client_Data *e = ev;
+    client_data_t *msg = ecore_con_client_data_get(e->client);
     msg->msg = realloc(msg->msg, msg->size + e->size);
     memcpy(msg->msg + msg->size, e->data, e->size);
     msg->size += e->size;
     return 0;
 }
 
-static void main_win_resize_handler(Ecore_Evas* main_win)
+static void
+main_win_resize_handler(Ecore_Evas * main_win)
 {
     ecore_evas_hide(main_win);
     int w, h;
-    Evas* canvas = ecore_evas_get(main_win);
+    Evas *canvas = ecore_evas_get(main_win);
     evas_output_size_get(canvas, &w, &h);
 
-    Evas_Object* edje = evas_object_name_find(canvas, "edje");
+    Evas_Object *edje = evas_object_name_find(canvas, "edje");
     evas_object_resize(edje, w, h);
     ecore_evas_show(main_win);
 }
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
-    if(!ecore_x_init(NULL))
+    if (!ecore_x_init(NULL))
         errx(1, "Unable to initialize Ecore_X, maybe DISPLAY is not set");
-    if(!ecore_con_init())
+    if (!ecore_con_init())
         errx(1, "Unable to initialize Ecore_Con\n");
-    if(!ecore_evas_init())
+    if (!ecore_evas_init())
         errx(1, "Unable to initialize Ecore_Evas\n");
-    if(!edje_init())
+    if (!edje_init())
         errx(1, "Unable to initialize Edje\n");
 
     setlocale(LC_ALL, "");
     textdomain("eshutdown");
 
-    keys_t* keys = keys_alloc("eshutdown");
+    keys_t *keys = keys_alloc("eshutdown");
 
     ecore_con_server_add(ECORE_CON_LOCAL_USER, "eshutdown", 0, NULL);
 
     ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_ADD, _client_add, NULL);
-    ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_DATA, _client_data, NULL);
+    ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_DATA, _client_data,
+                            NULL);
     ecore_event_handler_add(ECORE_CON_EVENT_CLIENT_DEL, _client_del, NULL);
 
     ecore_x_io_error_handler_set(exit_all, NULL);
@@ -153,18 +164,21 @@ int main(int argc, char **argv)
 
     Evas_Object *edje = edje_object_add(main_canvas);
     evas_object_name_set(edje, "edje");
-    edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj", "eshutdown");
+    edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj",
+                         "eshutdown");
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, 600, 800);
     evas_object_show(edje);
     evas_object_focus_set(edje, 1);
-    evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP, &key_handler, keys);
+    evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP,
+                                   &key_handler, keys);
 
-    edje_object_part_text_set(edje, "eshutdown/title", gettext("Power Off"));
+    edje_object_part_text_set(edje, "eshutdown/title",
+                              gettext("Power Off"));
     char *t;
     asprintf(&t, "%s<br><br>%s",
-            gettext("Power off - press \"OK\""),
-            gettext("Cancel - press \"C\""));
+             gettext("Power off - press \"OK\""),
+             gettext("Cancel - press \"C\""));
     edje_object_part_text_set(edje, "eshutdown/text", t);
     free(t);
 
