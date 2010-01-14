@@ -10,5 +10,14 @@ Standards-Version: 3.8.3
 Package: eshutdown
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: Shutdown gui
- Shutdown gui
+Description: OpenInkpot Shutdown GUI
+ OpenInkpot Shutdown GUI
+
+Package: eshutdown-dbg
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: OpenInkpot Shutdown GUI -- debugging symbols
+ OpenInkpot Shutdown GUI
+ .
+ This package provides debugging symbols.
+
