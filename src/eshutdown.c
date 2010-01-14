@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <libintl.h>
+#include <err.h>
 
 #include <Ecore.h>
 #include <Ecore_X.h>
@@ -42,15 +43,6 @@
 Ecore_Evas *main_win;
 
 void exit_all(void* param) { ecore_main_loop_quit(); }
-
-static void die(const char* fmt, ...)
-{
-    va_list ap;
-    va_start(ap, fmt);
-    vfprintf(stderr, fmt, ap);
-    va_end(ap);
-    exit(EXIT_FAILURE);
-}
 
 typedef struct
 {
@@ -129,13 +121,13 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 int main(int argc, char **argv)
 {
     if(!ecore_x_init(NULL))
-        die("Unable to initialize Ecore_X, maybe DISPLAY is not set\n");
+        errx(1, "Unable to initialize Ecore_X, maybe DISPLAY is not set");
     if(!ecore_con_init())
-        die("Unable to initialize Ecore_Con\n");
+        errx(1, "Unable to initialize Ecore_Con\n");
     if(!ecore_evas_init())
-        die("Unable to initialize Ecore_Evas\n");
+        errx(1, "Unable to initialize Ecore_Evas\n");
     if(!edje_init())
-        die("Unable to initialize Edje\n");
+        errx(1, "Unable to initialize Edje\n");
 
     setlocale(LC_ALL, "");
     textdomain("eshutdown");
