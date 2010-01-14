@@ -128,10 +128,8 @@ static void main_win_resize_handler(Ecore_Evas* main_win)
 
 int main(int argc, char **argv)
 {
-    if(!evas_init())
-        die("Unable to initialize Evas\n");
-    if(!ecore_init())
-        die("Unable to initialize Ecore\n");
+    if(!ecore_x_init(NULL))
+        die("Unable to initialize Ecore_X, maybe DISPLAY is not set\n");
     if(!ecore_con_init())
         die("Unable to initialize Ecore_Con\n");
     if(!ecore_evas_init())
@@ -180,13 +178,12 @@ int main(int argc, char **argv)
 
     ecore_main_loop_begin();
 
+    keys_free(keys);
+
     edje_shutdown();
     ecore_evas_shutdown();
     ecore_con_shutdown();
-    ecore_shutdown();
-    evas_shutdown();
-
-    keys_free(keys);
+    ecore_x_shutdown();
 
     return 0;
 }
