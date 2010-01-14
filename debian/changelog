@@ -1,3 +1,16 @@
+eshutdown (0.3.6) zelazny; urgency=low
+
+  * Rebuild due to EFL update.
+  * New translations: Dutch, Japanese.
+  * Coding style fixed.
+  * CFLAGS passed by dpkg-buildpackage are not touched anymore
+  * -dbg package added
+  * Copyright info added
+  * Hand-written die() replaced with errx(3)
+  * Ecore_X initialization errors handled
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Thu, 14 Jan 2010 13:20:34 +0600
+
 eshutdown (0.3-5) asimov; urgency=low
 
   * Adjust background (OI#531)
