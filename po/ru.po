@@ -2,7 +2,7 @@
 # Copyright (C) 2009 Alexander Kerner <lunohod@openinkpot.org>
 # This file is distributed under the same license as the eshutdown package.
 # Alexander Kerner <lunohod@openinkpot.org>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: eshutdown\n"
@@ -25,4 +25,4 @@ msgstr "Выключить устройство - нажмите \"OK\""
 
 #: src/eshutdown.c:160
 msgid "Cancel - press \"C\""
-msgstr "Отменить - нажмите \"C\""
+msgstr "Отменить - нажмите \"C\"/\"ВОЗВРАТ\""
