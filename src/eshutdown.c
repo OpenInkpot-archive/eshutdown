@@ -33,10 +33,7 @@
 #include <Edje.h>
 
 #include <libkeys.h>
-
-#ifndef DATADIR
-#  define DATADIR "."
-#endif
+#include <libeoi_themes.h>
 
 #define POWER "Power"
 
@@ -162,10 +159,10 @@ main(int argc, char **argv)
 
     Evas *main_canvas = ecore_evas_get(main_win);
 
-    Evas_Object *edje = edje_object_add(main_canvas);
+    Evas_Object *edje
+        = eoi_create_themed_edje(main_canvas, "eshutdown", "eshutdown");
+
     evas_object_name_set(edje, "edje");
-    edje_object_file_set(edje, DATADIR "/eshutdown/themes/eshutdown.edj",
-                         "eshutdown");
     evas_object_move(edje, 0, 0);
     evas_object_resize(edje, 600, 800);
     evas_object_show(edje);
