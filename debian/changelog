@@ -1,3 +1,9 @@
+eshutdown (0.3.7) zelazny; urgency=low
+
+  * Translations updated: Russian
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Tue, 02 Mar 2010 13:47:50 +0600
+
 eshutdown (0.3.6) zelazny; urgency=low
 
   * Rebuild due to EFL update.
