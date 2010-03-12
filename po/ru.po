@@ -25,4 +25,4 @@ msgstr "Выключить устройство - нажмите \"OK\""
 
 #: src/eshutdown.c:160
 msgid "Cancel - press \"C\""
-msgstr "Отменить - нажмите \"C\"/\"ВОЗВРАТ\""
+msgstr "Отменить - нажмите \"C\""
