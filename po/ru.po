@@ -19,10 +19,10 @@ msgstr ""
 msgid "Power Off"
 msgstr "Выключение устройства"
 
-#: src/eshutdown.c:159
-msgid "Power off - press \"OK\""
-msgstr "Выключить устройство - нажмите \"OK\""
-
 #: src/eshutdown.c:160
 msgid "Cancel - press \"C\""
-msgstr "Отменить - нажмите \"C\""
+msgstr "Отменить - нажмите «C»/«↩»"
+
+#: src/eshutdown.c:159
+msgid "Power off - press \"OK\""
+msgstr "Выключить устройство - нажмите «OK»"
