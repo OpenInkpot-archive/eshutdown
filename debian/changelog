@@ -1,3 +1,9 @@
+eshutdown (0.3.8) zelazny; urgency=low
+
+  * Use dialog from libeoi
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 22 Mar 2010 05:58:24 +0600
+
 eshutdown (0.3.7) zelazny; urgency=low
 
   * Translations updated: Russian
