@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2009 Alexander Kerner <lunohod@openinkpot.org>
- * Copyright © 2009 Mikhail Gusarov <dottedmag@dottedmag.net>
+ * Copyright © 2009,2010 Mikhail Gusarov <dottedmag@dottedmag.net>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,13 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <libintl.h>
 #include <err.h>
+#include <locale.h>
 
 #include <Ecore.h>
 #include <Ecore_X.h>
@@ -34,6 +36,8 @@
 
 #include <libkeys.h>
 #include <libeoi_themes.h>
+#include <libeoi_utils.h>
+#include <libeoi_dialog.h>
 
 #define POWER "Power"
 
@@ -88,12 +92,13 @@ _client_del(void *param, int ev_type, void *ev)
     client_data_t *msg = ecore_con_client_data_get(e->client);
 
     /* Handle */
-    if (strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size))
+    if (strlen(POWER) == msg->size && !strncmp(POWER, msg->msg, msg->size)) {
         if (ecore_evas_visibility_get(main_win))
             ecore_evas_raise(main_win);
         else {
             ecore_evas_show(main_win);
         }
+    }
 
     free(msg->msg);
     free(msg);
@@ -109,19 +114,6 @@ _client_data(void *param, int ev_type, void *ev)
     memcpy(msg->msg + msg->size, e->data, e->size);
     msg->size += e->size;
     return 0;
-}
-
-static void
-main_win_resize_handler(Ecore_Evas * main_win)
-{
-    ecore_evas_hide(main_win);
-    int w, h;
-    Evas *canvas = ecore_evas_get(main_win);
-    evas_output_size_get(canvas, &w, &h);
-
-    Evas_Object *edje = evas_object_name_find(canvas, "edje");
-    evas_object_resize(edje, w, h);
-    ecore_evas_show(main_win);
 }
 
 int
@@ -155,36 +147,38 @@ main(int argc, char **argv)
     ecore_evas_title_set(main_win, "eshutdown");
     ecore_evas_name_class_set(main_win, "eshutdown", "eshutdown");
 
-    ecore_evas_callback_resize_set(main_win, main_win_resize_handler);
-
     Evas *main_canvas = ecore_evas_get(main_win);
 
     Evas_Object *edje
         = eoi_create_themed_edje(main_canvas, "eshutdown", "eshutdown");
 
-    evas_object_name_set(edje, "edje");
-    evas_object_move(edje, 0, 0);
-    evas_object_resize(edje, 600, 800);
-    evas_object_show(edje);
+    Evas_Object *dlg = eoi_dialog_create("dlg", edje);
+    eoi_dialog_title_set(dlg, gettext("Power Off"));
+    evas_object_move(dlg, 0, 0);
+    evas_object_resize(dlg, 600, 800);
+    ecore_evas_object_associate(main_win, dlg, 0);
+
     evas_object_focus_set(edje, 1);
     evas_object_event_callback_add(edje, EVAS_CALLBACK_KEY_UP,
                                    &key_handler, keys);
 
-    edje_object_part_text_set(edje, "eshutdown/title",
-                              gettext("Power Off"));
-    char *t;
-    asprintf(&t, "%s<br><br>%s",
-             gettext("Power off - press \"OK\""),
-             gettext("Cancel - press \"C\""));
+    char *t = xasprintf("%s<br><br>%s",
+                        gettext("Power off - press \"OK\""),
+                        gettext("Cancel - press \"C\""));
     edje_object_part_text_set(edje, "eshutdown/text", t);
     free(t);
+
+    Evas_Object *icon = eoi_create_themed_edje(main_canvas, "eshutdown", "icon");
+    edje_object_part_swallow(dlg, "icon", icon);
+
+    evas_object_show(dlg);
 
     ecore_main_loop_begin();
 
     keys_free(keys);
 
-    edje_shutdown();
     ecore_evas_shutdown();
+    edje_shutdown();
     ecore_con_shutdown();
     ecore_x_shutdown();
 
