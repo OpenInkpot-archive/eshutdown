@@ -1,3 +1,9 @@
+eshutdown (0.3.9) zelazny; urgency=low
+
+  * Updated translations: Russian
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Mon, 22 Mar 2010 06:00:09 +0600
+
 eshutdown (0.3.8) zelazny; urgency=low
 
   * Use dialog from libeoi
