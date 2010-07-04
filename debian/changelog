@@ -1,3 +1,9 @@
+eshutdown (0.3.11) zelazny; urgency=low
+
+  * Adjustment to new ecore API
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sun, 04 Jul 2010 23:23:08 +0200
+
 eshutdown (0.3.10) zelazny; urgency=low
 
   * Updated translations: Russian
