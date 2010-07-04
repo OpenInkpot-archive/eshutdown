@@ -55,7 +55,7 @@ typedef struct {
 } client_data_t;
 
 static void
-shutdown()
+_shutdown()
 {
     system("poweroff");
 }
@@ -68,7 +68,7 @@ key_handler(void *data, Evas * evas, Evas_Object * obj, void *event_info)
                                               event_info);
 
     if (action && !strcmp(action, "Shutdown"))
-        shutdown();
+        _shutdown();
     else if (action && !strcmp(action, "Close"))
         ecore_evas_hide(main_win);
 }
