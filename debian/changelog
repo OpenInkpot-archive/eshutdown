@@ -1,3 +1,10 @@
+eshutdown (0.3.11.bradbury1) bradbury; urgency=low
+
+  * Build for bradbury
+  * Backported: Switch ecore-con server from LOCAL_USER to LOCAL_SYSTEM
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 10 Jul 2010 21:21:50 +0200
+
 eshutdown (0.3.10) zelazny; urgency=low
 
   * Updated translations: Russian
