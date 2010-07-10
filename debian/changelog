@@ -1,3 +1,9 @@
+eshutdown (0.3.12) zelazny; urgency=low
+
+  * Switch ecore-con server from LOCAL_USER to LOCAL_SYSTEM
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 10 Jul 2010 21:20:08 +0200
+
 eshutdown (0.3.11) zelazny; urgency=low
 
   * Adjustment to new ecore API
