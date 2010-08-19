@@ -1,3 +1,13 @@
+eshutdown (0.3.13) zelazny; urgency=low
+
+  [ Tomasz Długosz ]
+  * l10n: initial swedish translation
+
+  [ Alexander Kerner ]
+  * Use 8bpp engine
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Thu, 19 Aug 2010 09:44:06 +0200
+
 eshutdown (0.3.12) zelazny; urgency=low
 
   * Switch ecore-con server from LOCAL_USER to LOCAL_SYSTEM
