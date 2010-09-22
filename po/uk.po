@@ -25,7 +25,7 @@ msgstr "Відмінити: натисніть «С»"
 
 #: src/eshutdown.c:159
 msgid "Power off - press \"OK\""
-msgstr "Вимкнути: натисніть «ОК»"
+msgstr "Вимкнути: натисніть «ОК»/«↩»"
 
 #~ msgid "OFF"
 #~ msgstr "Викл."
