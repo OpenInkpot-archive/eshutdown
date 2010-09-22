@@ -19,13 +19,13 @@ msgstr ""
 msgid "Power Off"
 msgstr "Вимкнути пристрій"
 
-#: src/eshutdown.c:160
-msgid "Cancel - press \"C\""
-msgstr "Відмінити: натисніть «С»"
-
 #: src/eshutdown.c:159
 msgid "Power off - press \"OK\""
-msgstr "Вимкнути: натисніть «ОК»/«↩»"
+msgstr "Вимкнути: натисніть «ОК»"
+
+#: src/eshutdown.c:160
+msgid "Cancel - press \"C\""
+msgstr "Відмінити: натисніть «С»/«↩»"
 
 #~ msgid "OFF"
 #~ msgstr "Викл."
