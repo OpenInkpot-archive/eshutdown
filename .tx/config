@@ -1,0 +1,8 @@
+[oi.eshutdown]
+file_filter = po/<lang>.po
+source_file = po/eshutdown.pot
+source_lang = en
+
+[main]
+host = transifex.net
+
