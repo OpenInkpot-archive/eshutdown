@@ -1,3 +1,9 @@
+eshutdown (0.3.14) zelazny; urgency=low
+
+  * Adjust key bindings for PRS505
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sat, 10 Sep 2011 22:43:42 +0200
+
 eshutdown (0.3.13) zelazny; urgency=low
 
   [ Tomasz Długosz ]
